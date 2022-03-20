@@ -13,16 +13,21 @@ export class AuthService {
   static async registration(
     dto: RegistrationDto
   ): Promise<AxiosResponse<AuthResponse>> {
-    return await http.post<AuthResponse>(BackendEndpoints.REGISTRATION, dto);
+    return await http.instance.post<AuthResponse>(
+      BackendEndpoints.REGISTRATION,
+      dto
+    );
   }
 
   static async login(dto: LoginDto): Promise<AxiosResponse<AuthResponse>> {
-    return await http.post<AuthResponse>(BackendEndpoints.LOGIN, dto);
+    return await http.instance.post<AuthResponse>(BackendEndpoints.LOGIN, dto);
   }
 
   static async logout(): Promise<void> {
-    return await http.get(BackendEndpoints.LOGOUT);
+    return await http.instance.get(BackendEndpoints.LOGOUT);
   }
 
-  static async refresh() {}
+  static async refresh(): Promise<AxiosResponse<AuthResponse>> {
+    return await http.clearInstance.get<AuthResponse>(BackendEndpoints.REFRESH);
+  }
 }

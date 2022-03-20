@@ -3,8 +3,11 @@ export interface User {
   name: string;
   email: string;
   password: string;
+  isActivated: boolean;
 }
 
+export type AppUser = Pick<User, "email" | "name" | "id" | "isActivated">;
+export type AppUsers = Pick<User, "email" | "name">[];
 export type RegistrationDto = Pick<User, "email" | "name" | "password">;
 export type LoginDto = Pick<User, "email" | "password">;
 
@@ -15,7 +18,7 @@ export interface Tokens {
 
 export interface AuthResponse {
   tokens: Tokens;
-  user: Pick<User, "id" | "name" | "email">;
+  user: AppUser;
 }
 
-export type GetUsersResponse = Pick<User, "email" | "name">[];
+export type GetUsersResponse = AppUsers;

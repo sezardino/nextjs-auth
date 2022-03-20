@@ -5,3 +5,7 @@ export enum BackendEndpoints {
   REFRESH = "/auth/refresh",
   GET_USERS = "/auth/users",
 }
+
+export enum LSNames {
+  AUTH_TOKEN = "auth-token",
+}
